@@ -1,0 +1,8 @@
+[core]
+  excludesfile = ~/.gitignore
+  autocrlf = input
+[alias]
+  graph = log --graph --decorate --oneline
+  stat = status --branch --short
+[include]
+  path = ~/.gitconfig.local
