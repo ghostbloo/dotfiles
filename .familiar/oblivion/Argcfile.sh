@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 set -e
 
+# @describe oblivion - feed for your thoughts
+# @meta require-tools sqlite3
+# @meta dotenv
 OBLIVION_DIR="$HOME/.familiar/oblivion"
 DB_PATH="$OBLIVION_DIR/oblivion.db"
 
 # @cmd Insert a post into the database
 # @arg content The text of the post
 post() {
-  echo "DEBUG: argc_text = [$argc_content]" 
+  if [[ -z "$argc_content" ]]; then
+    echo "Error: Content is required"
+    exit 1
+  fi
   sqlite3 "$DB_PATH" <<EOF
 .parameter set @text "$argc_content"
 INSERT INTO posts (text) VALUES (@text);
@@ -30,7 +36,7 @@ init() {
 
 # @cmd Read all posts from the database
 read() {
-  sqlite3 "$DB_PATH" "SELECT * FROM posts"
+  sqlite3 "$DB_PATH" "SELECT id, text, created_at FROM posts"
 }
 
 # See more details at https://github.com/sigoden/argc

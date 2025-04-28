@@ -11,4 +11,6 @@ local user_prompt_symbol="❯"
 local root_prompt_symbol="#"
 PROMPT='%F{blue}%~ ${vcs_info_msg_0_}%(?.%F{083}.%F{197})%(!.${root_prompt_symbol}.${user_prompt_symbol})%f '
 
+alias oblivion="$HOME/.familiar/oblivion/Argcfile.sh"
+
 export AICHAT_DIR="$HOME/Library/Application Support/aichat"
