@@ -11,7 +11,7 @@ dotenv.config();
 const NOTEBOOK_NAME = process.env.NOTEBOOK_NAME || "familiar";
 const LOG_PATH = Bun.pathToFileURL("./notebook.log");
 
-const log = async (text: string) => appendFile(LOG_PATH, `${new Date().toISOString()} ${text}\n`);
+const log = async (text: string) => undefined; //appendFile(LOG_PATH, `${new Date().toISOString()} ${text}\n`);
 
 async function main() {
   // check if nb is installed
