@@ -14,6 +14,11 @@ const LOG_PATH = Bun.pathToFileURL("./notebook.log");
 const log = async (text: string) => appendFile(LOG_PATH, `${new Date().toISOString()} ${text}\n`);
 
 async function main() {
+  // check if nb is installed
+  if ((await Bun.spawn(["nb", "--version"]).exited) !== 0) {
+    throw new Error("nb is not installed");
+  }
+
   const mcp = new McpServer({
     name: "notebook",
     version: "1.0.0",
