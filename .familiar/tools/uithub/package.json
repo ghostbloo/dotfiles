@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "bun build --target bun --outfile uithub.js main.ts",
-    "dev": "bun run main.ts"
+    "dev": "bunx @modelcontextprotocol/inspector bun run main.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
