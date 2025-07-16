@@ -5,7 +5,7 @@ import { OpenAI } from "openai";
 import type { Tool } from "openai/resources/responses/responses.mjs";
 
 const createOpenAiClient = () => new OpenAI({
-  apiKey: env.OPENAI_API_KEY,
+  apiKey: Bun.env.OPENAI_API_KEY,
 });
 
 const server = new McpServer({
