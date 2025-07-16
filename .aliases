@@ -3,5 +3,6 @@ alias la='ls -A'
 
 alias umm="aichat --agent familiar"
 alias bup="brew update && brew upgrade"
+alias clod="claude --dangerously-skip-permissions"
 
 alias oblivion="bun run \"$FAMILIAR_DIR/client/src/index.ts\" posts create"

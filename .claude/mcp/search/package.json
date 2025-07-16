@@ -1,0 +1,17 @@
+{
+  "name": "mcp-search-agent",
+  "version": "0.0.3",
+  "type": "module",
+  "main": "./dist.js",
+  "scripts": {
+    "build": "bun build index.ts --outfile dist.js --target bun",
+    "start": "bun run index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.15.1",
+    "openai": "^5.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
