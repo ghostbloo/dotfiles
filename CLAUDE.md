@@ -18,6 +18,14 @@ This is a dotfiles repository focused on enhancing the Claude Code experience wi
   - `bun run build` - Build the server
   - `bun run lint` - Type check with TypeScript
 
+### Clod Package (Python)
+- `~/.local/bin/clod` - Claude Code utilities and tmux integration (installed globally via uv)
+- `clod tmux setup --session [name]` - Create shared tmux workspace (user: top 80%, Claude: bottom 20%)
+- `clod tmux send "command" --session [name]` - Execute commands in Claude's pane without disrupting user focus
+- `clod tmux read --session [name]` - Read output from Claude's pane for analysis
+- `clod tmux status --session [name]` - Check session status and pane layout
+- **REPL commands**: `start-repl`, `send-input`, `submit`, `view-output`, `send-keys`, `stop-repl` - Universal REPL interaction via tmux sessions
+
 ## Architecture
 
 ### MCP Servers
@@ -39,9 +47,12 @@ All MCP servers:
 ## Development Guidelines
 
 ### Package Management
-- This repository uses **Bun** for JavaScript/TypeScript projects
-- Install packages with `bun add [package]` in the appropriate directory
+- This repository uses **Bun** for JavaScript/TypeScript projects in `mcp/`
+- This repository uses **uv** for Python projects (clod package)
+- Install JS packages with `bun add [package]` in the appropriate directory
+- Install Python packages with `uv add [package]` in root directory
 - The MCP workspace is configured in `mcp/package.json`
+- The clod package is configured in `pyproject.toml`
 
 ### Testing and Building
 - No test framework is currently configured
@@ -49,8 +60,10 @@ All MCP servers:
 - Type checking is done via `tsc --noEmit`
 
 ### Key Technologies
-- **Bun**: JavaScript runtime and package manager
+- **Bun**: JavaScript runtime and package manager for MCP servers
+- **uv**: Python package manager for clod utilities
 - **TypeScript**: For all MCP server development
+- **Python + Click**: For clod CLI utilities and tmux integration
 - **MCP SDK**: `@modelcontextprotocol/sdk` v1.15.1
 - **OpenAI SDK**: For the search agent server
 - **Zod v3**: For schema validation in MCP servers

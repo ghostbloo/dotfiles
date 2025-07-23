@@ -1,0 +1,16 @@
+[project]
+name = "clod"
+version = "0.1.0"
+description = "Claude Code utilities and hacks"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cchooks>=0.1.0",
+    "click>=8.0.0",
+]
+
+[project.scripts]
+clod = "clod.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["clod*"]

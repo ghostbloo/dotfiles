@@ -4,6 +4,8 @@ set -euxo pipefail
 mkdir -p ~/.claude/mcp
 mkdir -p ~/.claude/scripts
 
+uv tool install --editable .
+
 bun run --cwd mcp build:all
 
 claude mcp remove --scope user deepwiki || true
