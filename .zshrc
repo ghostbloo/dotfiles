@@ -11,7 +11,10 @@ local user_prompt_symbol="❯"
 local root_prompt_symbol="#"
 PROMPT='%F{blue}%~ ${vcs_info_msg_0_}%(?.%F{083}.%F{197})%(!.${root_prompt_symbol}.${user_prompt_symbol})%f '
 
+# bun
+export PATH="$HOME/.bun/bin:$PATH"
+
 export AICHAT_DIR="$HOME/Library/Application Support/aichat"
 export FAMILIAR_DIR="$AICHAT_DIR/functions"
 
-source $(dirname $0)/.aliases
+source "$HOME/.aliases"

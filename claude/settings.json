@@ -3,6 +3,7 @@
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
   },
   "enableAllProjectMcpServers": true,
+  "model": "sonnet",
   "hooks": {
     "PreToolUse": [
       {
@@ -106,6 +107,5 @@
         ]
       }
     ]
-  },
-  "model": "opus"
+  }
 }

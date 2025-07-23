@@ -12,4 +12,5 @@ if (!OPENAI_API_KEY) {
 }
 
 await $`bun build index.ts --outfile ${OUT_PATH} --target bun`;
-await $`claude mcp add ${SERVER_NAME} ${OUT_PATH} -e OPENAI_API_KEY=${OPENAI_API_KEY}`;
+await $`claude mcp remove --scope user ${SERVER_NAME}`.nothrow();
+await $`claude mcp add --scope user ${SERVER_NAME} ${OUT_PATH} -e OPENAI_API_KEY=${OPENAI_API_KEY}`;
