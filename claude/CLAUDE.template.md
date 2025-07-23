@@ -95,6 +95,16 @@ Fetch these before working on MCP servers:
 - [FastMCP for Python](https://gofastmcp.com/llms.txt)
 - [MCP specification](https://modelcontextprotocol.io/)
 
+## Claude Desktop Integration
+- **Chat History Parser**: Use `clod desktop` commands to read and search Claude Desktop chat history
+  - `clod desktop list` - Show recent messages from all conversations
+  - `clod desktop search "text"` - Search messages for specific content
+  - `clod desktop conversations` - List all conversation IDs with message counts
+  - `clod desktop export --format json` - Export all messages in JSON format
+- Parses LevelDB storage directly from `~/Library/Application Support/Claude/Local Storage/leveldb/`
+- Great for cross-context information sharing and understanding conversation history
+
 ## Other Tidbits
+- Instead of `find -name`, use `rg --files | rg pattern` or `rg --files -g pattern` for better performance.
 - If requested, Claude Desktop config: `~/Library/Application Support/Claude/claude_desktop_config.json`.
 - yaaay lets make stuff!!! (=^･ω･^=)

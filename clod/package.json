@@ -1,0 +1,6 @@
+{
+    "name": "clod",
+    "scripts": {
+        "build": "uv tool install --editable ../"
+    }
+}
