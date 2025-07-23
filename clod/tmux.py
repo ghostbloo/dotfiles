@@ -12,7 +12,7 @@ class TmuxController:
 
     def __init__(self, session_name: str = "claude-workspace"):
         self.session_name = session_name
-        self.target_pane = f"{session_name}.1"
+        self.target_pane = f"{session_name}:cc.1"
 
     def _run_tmux(self, *args: str) -> subprocess.CompletedProcess:
         """Run a tmux command and return the result."""
@@ -31,11 +31,17 @@ class TmuxController:
 
         cwd = str(working_dir or Path.cwd())
 
-        # Create session and split vertically (80% top user, 20% bottom Claude)
-        self._run_tmux("new-session", "-d", "-s", self.session_name, "-c", cwd)
-        self._run_tmux("split-window", "-v", "-p", "20", "-t", self.session_name, "-c", cwd)
+        # Create session with first window named "cc" and split vertically (85% top user, 15% bottom Claude)
+        self._run_tmux("new-session", "-d", "-s", self.session_name, "-c", cwd, "-n", "cc")
+        self._run_tmux("split-window", "-v", "-p", "15", "-t", f"{self.session_name}:cc", "-c", cwd)
 
-        # Send initial messages to Claude pane
+        # Create second window named "pm2" running pm2 monitor
+        self._run_tmux("new-window", "-t", self.session_name, "-c", cwd, "-n", "pm2", "pm2 monit")
+
+        # Switch back to the cc window
+        self._run_tmux("select-window", "-t", f"{self.session_name}:cc")
+
+        # Send initial messages to Claude pane in cc window
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.send_keys(f"echo 'Claude control pane ready ({timestamp})'")
         self.send_keys(f"echo 'Working directory: {cwd}'")
@@ -43,6 +49,7 @@ class TmuxController:
         print(
             f"Claude workspace created! Use 'tmux attach -t {self.session_name}' to view"
         )
+        print("Windows: 'cc' (main workspace), 'pm2' (pm2 monitor)")
         print("Or press prefix+c to switch to it from existing sessions")
         return True
 
