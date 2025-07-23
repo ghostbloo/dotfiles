@@ -25,6 +25,7 @@ This is a dotfiles repository focused on enhancing the Claude Code experience wi
 - `clod tmux read --session [name]` - Read output from Claude's pane for analysis
 - `clod tmux status --session [name]` - Check session status and pane layout
 - **REPL commands**: `start-repl`, `send-input`, `submit`, `view-output`, `send-keys`, `stop-repl` - Universal REPL interaction via tmux sessions
+- **Desktop chat parser**: `clod desktop list`, `clod desktop search "query"`, `clod desktop conversations` - Read and search Claude Desktop chat history from LevelDB storage
 
 ## Architecture
 

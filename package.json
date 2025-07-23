@@ -1,0 +1,21 @@
+{
+  "name": "dotfilez-mcp",
+  "type": "module",
+  "workspaces": [
+    "mcp/servers/*",
+    "clod"
+  ],
+  "scripts": {
+    "build": "bun run build.ts",
+    "build:all": "bun --env-file .env --filter=\"*\" build",
+    "mcp:install": "bun run mcp/build.ts",
+    "copy-static": "bun run --env-file .env copy-static.ts",
+    "lint:all": "bun run --filter=\"*\" lint"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.18"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-code": "^1.0.58"
+  }
+}

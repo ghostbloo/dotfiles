@@ -1,4 +1,4 @@
 # dotfiles
-these are my dotfiles!
+my dotfiles and some other tools
 
-`setup.sh` has no confirmation or rollback, so look over it first!
+`bun run build` (destructive, look first)
