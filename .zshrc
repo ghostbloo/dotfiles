@@ -16,6 +16,10 @@ export PATH="$HOME/.bun/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Python configuration - use uv managed Python
+eval "$(uv generate-shell-completion zsh)"
+export LLM_ROOT_DIR="$HOME/aichat/functions"
+
 if [[ -f "$HOME/.claude/local/claude" ]]; then
   alias claude="$HOME/.claude/local/claude"
 fi
