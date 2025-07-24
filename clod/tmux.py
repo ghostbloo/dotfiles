@@ -2,9 +2,8 @@
 
 import subprocess
 import time
-from pathlib import Path
 from datetime import datetime
-from typing import Optional
+from pathlib import Path
 
 
 class TmuxController:
@@ -23,7 +22,7 @@ class TmuxController:
         result = self._run_tmux("has-session", "-t", self.session_name)
         return result.returncode == 0
 
-    def setup(self, working_dir: Optional[Path] = None) -> bool:
+    def setup(self, working_dir: Path | None = None) -> bool:
         """Set up the Claude tmux workspace."""
         if self.has_session():
             print(f"Session '{self.session_name}' already exists")
@@ -56,7 +55,7 @@ class TmuxController:
     def send_keys(self, command: str) -> bool:
         """Send a command to the Claude pane."""
         if not self.has_session():
-            print(f"Claude session doesn't exist. Run setup first.")
+            print("Claude session doesn't exist. Run setup first.")
             return False
 
         print(f"Sending command to Claude pane: {command}")
@@ -66,7 +65,7 @@ class TmuxController:
     def read_output(self, lines: int = 20) -> str:
         """Read output from the Claude pane."""
         if not self.has_session():
-            print(f"Claude session doesn't exist. Run setup first.")
+            print("Claude session doesn't exist. Run setup first.")
             return ""
 
         result = self._run_tmux("capture-pane", "-t", self.target_pane, "-p")
@@ -112,14 +111,14 @@ class TmuxController:
         return False
 
     # REPL-specific methods
-    def start_repl(self, command: str, working_dir: Optional[Path] = None) -> bool:
+    def start_repl(self, command: str, working_dir: Path | None = None) -> bool:
         """Start a REPL session with the specified command."""
         if self.has_session():
             print(f"Session '{self.session_name}' already exists")
             return False
 
         cwd = str(working_dir or Path.cwd())
-        
+
         # Create session and run the command
         result = self._run_tmux("new-session", "-d", "-s", self.session_name, "-c", cwd, command)
         if result.returncode == 0:
@@ -177,7 +176,7 @@ class TmuxController:
             result = self._run_tmux("capture-pane", "-t", self.session_name, "-S", f"-{history_lines}", "-p")
         else:
             result = self._run_tmux("capture-pane", "-t", self.session_name, "-p")
-        
+
         if result.returncode != 0:
             return ""
 
